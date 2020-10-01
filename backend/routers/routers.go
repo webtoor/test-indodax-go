@@ -29,6 +29,7 @@ func SetupRouter() *gin.Engine {
 	{
 		api.POST("/signup", ctrl.SignUp)
 		api.POST("/signin", ctrl.SignIn)
+
 	}
 	return r
 }
