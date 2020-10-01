@@ -71,7 +71,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-  
+    console.log('Golang Backend deploying in https://api.vuenic.com')
   }
 
   async logout(){
