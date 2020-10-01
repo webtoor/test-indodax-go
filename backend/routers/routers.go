@@ -5,6 +5,7 @@ import (
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
+	ctrl "github.com/webtoor/test-indodax-go/backend/controllers"
 )
 
 // SetupRouter ...
@@ -24,9 +25,10 @@ func SetupRouter() *gin.Engine {
 			"message": "Hello World",
 		})
 	})
-	/* 	v1 := r.Group("api/")
-	   	{
-
-	   	} */
+	api := r.Group("api/")
+	{
+		api.POST("/signup", ctrl.SignUp)
+		//api.POST("/signin", ctrl.SignIn)
+	}
 	return r
 }

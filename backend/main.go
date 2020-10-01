@@ -21,5 +21,5 @@ func main() {
 	r := routers.SetupRouter()
 
 	//log.Fatal(autotls.Run(r, "api.vuenic.com"))
-	r.Run(":8080")
+	r.Run(":8000")
 }
