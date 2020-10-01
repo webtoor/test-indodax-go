@@ -9,7 +9,7 @@ import (
 
 // TableName ...
 func (User) TableName() string {
-	return "user"
+	return "users"
 }
 
 // User ...
