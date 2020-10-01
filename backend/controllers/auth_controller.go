@@ -55,7 +55,7 @@ func SignUp(c *gin.Context) {
 // SignIn ...
 func SignIn(c *gin.Context) {
 	var request ReqLogin
-	user := &models.User{}
+	user := models.User{}
 
 	if err := c.ShouldBindJSON(&request); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})

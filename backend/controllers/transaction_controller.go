@@ -18,7 +18,7 @@ type ReqTransaction struct {
 func FindHistory(c *gin.Context) {
 	transaction := []models.Transaction{}
 	userID := uint(c.MustGet("jwt_user_id").(float64))
-	configs.DB.Preload("Sender").Preload("Receiver").Where("sender_id = ?", userID).Or("receiver_id = ?", userID).Find(&transaction)
+	configs.DB.Preload("Sender").Preload("Receiver").Where("sender_id = ?", userID).Or("receiver_id = ?", userID).Order("transaction_id desc").Find(&transaction)
 	c.JSON(http.StatusOK, gin.H{"status": 200, "data": transaction})
 }
 
@@ -66,6 +66,6 @@ func CreateTransaction(c *gin.Context) {
 
 	configs.DB.Create(&transaction)
 
-	c.JSON(http.StatusOK, gin.H{"status": 200, "data": transaction})
+	c.JSON(http.StatusOK, gin.H{"status": 201, "data": transaction})
 
 }

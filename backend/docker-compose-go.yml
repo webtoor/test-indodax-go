@@ -48,4 +48,4 @@ services :
         networks:
             - go-api
 networks:
-    vuenic-api:
+    go-api:
