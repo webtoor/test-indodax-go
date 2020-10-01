@@ -42,6 +42,11 @@ func CreateTransaction(c *gin.Context) {
 		return
 	}
 
+	if receiver.UserID == userID {
+		c.JSON(http.StatusOK, gin.H{"status": 400, "error": "Anda tidak bisa Transfer ke Akun sendiri"})
+		return
+	}
+
 	if sender.Saldo < request.Amount {
 		c.JSON(http.StatusOK, gin.H{"status": 400, "error": "Saldo Anda tidak cukup, Isi dengan data yang benar dan coba lagi"})
 		return
