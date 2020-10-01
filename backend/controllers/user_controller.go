@@ -8,8 +8,8 @@ import (
 	"github.com/webtoor/test-indodax-go/backend/models"
 )
 
-// Find One ...
-func Find(c *gin.Context) {
+// FindUser ...
+func FindUser(c *gin.Context) {
 	user := models.User{}
 	userID := uint(c.MustGet("jwt_user_id").(float64))
 	configs.DB.Where("user_id = ?", userID).First(&user)

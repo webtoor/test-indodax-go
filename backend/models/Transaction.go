@@ -6,15 +6,17 @@ import (
 
 // TableName ...
 func (Transaction) TableName() string {
-	return "transactions"
+	return "transaction"
 }
 
 // Transaction ...
 type Transaction struct {
-	TransactionID uint      `gorm:"primary_key;column:user_id" json:"user_id"`
-	SenderID      string    `gorm:"unique;column:sender_id"  json:"sender_id" binding:"required"`
-	ReceivedID    string    `gorm:"unique;column:receiver_id"  json:"receiver_id" binding:"required,email"`
-	Amount        uint      `gorm:"column:saldo"  json:"saldo" binding:"required"`
+	TransactionID uint      `gorm:"primary_key;column:transaction_id" json:"transaction_id"`
+	SenderID      string    `gorm:"column:sender_id"  json:"sender_id"`
+	ReceivedID    string    `gorm:"column:receiver_id"  json:"receiver_id"`
+	Amount        uint      `gorm:"column:amount"  json:"amount"`
 	CreatedAt     time.Time `gorm:"column:created_at;type:datetime"  json:"created_at"`
 	UpdatedAt     time.Time `gorm:"column:updated_at;type:datetime"  json:"updated_at"`
+	Sender        *User     `gorm:"foreignkey:SenderID" json:"sender,omitempty"`
+	Receiver      *User     `gorm:"foreignkey:ReceiverID" json:"receiver,omitempty"`
 }

@@ -30,7 +30,8 @@ func SetupRouter() *gin.Engine {
 	{
 		api.POST("/signup", ctrl.SignUp)
 		api.POST("/signin", ctrl.SignIn)
-		api.GET("/user", middleware.JwtMiddleware(), ctrl.Find)
+		api.GET("/user", middleware.JwtMiddleware(), ctrl.FindUser)
+		api.GET("/transaction", middleware.JwtMiddleware(), ctrl.FindHistory)
 
 	}
 	return r
