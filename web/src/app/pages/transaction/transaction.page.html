@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="dashboard" routerDirection="back" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>History Transaksi</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-top">
+  <div *ngIf="transaction?.length > 0; else emptyTransaction">
+  <div *ngFor="let item of transaction">
+  <ion-card> 
+    <ion-item>
+      <ion-icon *ngIf="item.sender.user_id === user_id" name="cash-outline" slot="start" style="color:red;"></ion-icon>
+      <ion-icon *ngIf="item.receiver.user_id === user_id" name="cash-outline" slot="start" style="color:#4ebaaa;"></ion-icon>
+      <ion-label>
+        <div *ngIf="item.sender.user_id === user_id">
+          Uang Keluar
+        </div>
+        <div *ngIf="item.receiver.user_id === user_id">
+          Uang Masuk  
+        </div>
+    </ion-label>
+    </ion-item>
+    <ion-card-content>
+      <div>Tanggal : {{item.created_at | date: "dd MMM yyy HH:mm:ss"}}</div>
+      <div>Pengirim : {{item.sender.username}}</div>
+      <div>Penerima : {{item.receiver.username}}</div>
+      <div>Jumlah : {{item.amount}} BTC</div>
+    </ion-card-content>
+  </ion-card>
+ </div>
+ </div>
+ 
+ <ng-template #emptyTransaction>
+  <div style="text-align: center;">
+    <ion-img src="/assets/images/gologo.png" style="height: 100px; margin-top: 18%;"></ion-img>
+    <h5 style="font-size: 13px; margin-top:15px;"><ion-badge color="danger">Anda Belum Memiliki History Transaksi</ion-badge></h5>
+  </div>
+</ng-template>
+</ion-content>

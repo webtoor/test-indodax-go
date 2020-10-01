@@ -1,0 +1,42 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar style="margin-top:0px;" color="white" class="ion-text-center">
+    <ion-button slot="end" color="primary" fill="clear" (click)="signupPage()">
+      <ion-icon color="danger" slot="end" name="arrow-forward-circle-outline"></ion-icon>
+          DAFTAR SEKARANG
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="ion-text-center" style="margin-top: 20px;">
+    <div style="max-width: 150px;margin:0 auto;text-align:center;" (click)="aboutPage()">
+      <img src="/assets/images/gologo.png" height="100px;" style="margin-bottom:0px;">
+      <div><a>Tentang Apps</a></div>
+    </div>
+  </div>
+  <form [formGroup]="signInForm" (ngSubmit)="onSubmit()">
+
+  <ion-item class="marginTop">
+    <ion-label position="stacked">Username</ion-label>
+    <ion-input type="text" placeholder="Username" formControlName="username"></ion-input>
+  </ion-item>
+
+  <div *ngIf="submitted && f.username.errors" class="invalid-feedback" style="margin-top:-10px;">
+    <div *ngIf="f.username.errors.required">Username harus diisi guys :(</div>
+  </div>
+
+  <ion-item class="marginTop">
+    <ion-label position="stacked">Password</ion-label>
+    <ion-input [type]="showPassword ? 'text' : 'password'" placeholder="Password" formControlName="password"></ion-input>
+    <ion-icon slot="end" [name]="passwordToggleIcon" style="margin-top: 25px;" (click)="togglePassword()"></ion-icon>
+  </ion-item>
+  <div *ngIf="submitted && f.password.errors" class="invalid-feedback" style="margin-top:-10px;">
+    
+    <div *ngIf="f.password.errors.required">Password harus diisi guys :(</div>
+  </div>
+
+  <div class="ion-text-center" style="margin-top:30px">
+    <ion-button expand="block" type="submit" style="height:40px" >Masuk</ion-button>
+  </div>
+  </form>
+  </ion-content>

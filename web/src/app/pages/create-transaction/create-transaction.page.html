@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/dashboard" routerDirection="back" icon="chevron-back-outline"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Transfer</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list-header>
+    <ion-badge color="yellow-light"><b>Saldo Anda : {{userData?.saldo}} BTC</b></ion-badge>
+  </ion-list-header>
+  <form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+
+  <ion-item class="marginTop">
+    <ion-label position="stacked">Username Penerima <ion-text color="danger">*</ion-text></ion-label>
+    <ion-input type="text" placeholder="Masukan Username Penerima" formControlName="receiver"></ion-input>
+  </ion-item>
+  <div *ngIf="submitted && f.receiver.errors" class="invalid-feedback" style="margin-top:-10px;">
+    <div *ngIf="f.receiver.errors.required">Username Penerima harus diisi guys :(</div>
+  </div>
+
+  <ion-item class="marginTop">
+    <ion-label position="stacked">Jumlah BTC <ion-text color="danger">* <sup>Bilangan Bulat</sup></ion-text></ion-label>
+    <ion-input type="number" placeholder="Contoh : 1000" formControlName="amount"></ion-input>
+  </ion-item>
+  <div *ngIf="submitted && f.amount.errors" class="invalid-feedback" style="margin-top:-10px;">
+    <div *ngIf="f.amount.errors.required">Jumlah BTC harus diisi guys :(</div>
+  </div>
+
+  <div class="ion-text-center" style="margin-top:40px">
+    <ion-button expand="block" type="submit" style="height:40px" >Submit</ion-button>
+  </div>
+  </form>
+  </ion-content>

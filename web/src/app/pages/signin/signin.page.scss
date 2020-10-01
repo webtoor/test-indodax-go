@@ -1,0 +1,17 @@
+.marginTop{
+    // margin-top:150px;
+        margin: 20px 0;
+}
+.invalid-feedback{
+    color: #ff0000;
+    font-size: 13px;
+}
+:host {
+    .item-interactive.ion-valid{
+      --highlight-background: #3dc2ff !important;
+    }
+  }
+
+ion-button {
+  text-transform: none;
+}
