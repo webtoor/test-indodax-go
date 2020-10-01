@@ -52,6 +52,12 @@ func CreateTransaction(c *gin.Context) {
 		return
 	}
 
+	senderSaldo := sender.Saldo - request.Amount
+	configs.DB.Model(&sender).Where("user_id = ?", userID).Updates(map[string]interface{}{"saldo": senderSaldo})
+
+	receiverSaldo := receiver.Saldo + request.Amount
+	configs.DB.Model(&receiver).Where("user_id = ?", receiver.UserID).Updates(map[string]interface{}{"saldo": receiverSaldo})
+
 	transaction := models.Transaction{
 		SenderID:   userID,
 		ReceivedID: receiver.UserID,
