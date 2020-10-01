@@ -6,6 +6,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	ctrl "github.com/webtoor/test-indodax-go/backend/controllers"
+	middleware "github.com/webtoor/test-indodax-go/backend/middleware"
 )
 
 // SetupRouter ...
@@ -29,6 +30,7 @@ func SetupRouter() *gin.Engine {
 	{
 		api.POST("/signup", ctrl.SignUp)
 		api.POST("/signin", ctrl.SignIn)
+		api.GET("/user", middleware.JwtMiddleware(), ctrl.Find)
 
 	}
 	return r
