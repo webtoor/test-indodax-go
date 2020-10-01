@@ -12,8 +12,8 @@ func (Transaction) TableName() string {
 // Transaction ...
 type Transaction struct {
 	TransactionID uint      `gorm:"primary_key;column:transaction_id" json:"transaction_id"`
-	SenderID      string    `gorm:"column:sender_id"  json:"sender_id"`
-	ReceivedID    string    `gorm:"column:receiver_id"  json:"receiver_id"`
+	SenderID      uint      `gorm:"column:sender_id"  json:"sender_id"`
+	ReceivedID    uint      `gorm:"column:receiver_id"  json:"receiver_id"`
 	Amount        uint      `gorm:"column:amount"  json:"amount"`
 	CreatedAt     time.Time `gorm:"column:created_at;type:datetime"  json:"created_at"`
 	UpdatedAt     time.Time `gorm:"column:updated_at;type:datetime"  json:"updated_at"`

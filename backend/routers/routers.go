@@ -32,6 +32,7 @@ func SetupRouter() *gin.Engine {
 		api.POST("/signin", ctrl.SignIn)
 		api.GET("/user", middleware.JwtMiddleware(), ctrl.FindUser)
 		api.GET("/transaction", middleware.JwtMiddleware(), ctrl.FindHistory)
+		api.POST("/transaction", middleware.JwtMiddleware(), ctrl.CreateTransaction)
 
 	}
 	return r
