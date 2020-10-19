@@ -57,6 +57,8 @@ export class SigninPage implements OnInit {
     this.authService.PostSignIn(this.signInForm.value, 'signin').subscribe(res => {
       console.log(res)
       if(res.access_token) {
+        this.submitted = false;
+        this.signInForm.reset()
         localStorage.setItem('indodax-go', JSON.stringify(res));
         this.events.publish('email', res.email);
         this.events.publish('username', res.username);
@@ -72,7 +74,7 @@ export class SigninPage implements OnInit {
   get f() { return this.signInForm.controls; }
 
   signupPage(){
-    this.router.navigate(['/signup'])
+    this.router.navigate(['/signup'], {replaceUrl: true})
   }
 
   aboutPage(){
